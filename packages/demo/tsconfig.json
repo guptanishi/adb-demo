@@ -1,6 +1,7 @@
 {
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
+        "isolatedModules": false,
         "rootDir": "./src", //                    /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
         "target": "ES2016",
         "lib": [
@@ -23,7 +24,8 @@
         ]
     },
     "include": [
-        "src"
+        "src",
+        "server.js"
     ],
     "exclude": [
         "src/**/*.spec.ts"

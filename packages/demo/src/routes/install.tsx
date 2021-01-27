@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import { pickFile, withDisplayName } from "../utils";
 import { chunkFile } from "./file-manager";
 import { RouteProps } from "./type";
+import { Row, Col, Button } from 'react-bootstrap';
 
 enum Stage {
     Uploading,
@@ -77,13 +78,16 @@ export const Install = withDisplayName('Install')(({
 
     return (
         <>
-            <Stack horizontal>
-                <DefaultButton
-                    disabled={!device || installing}
-                    text="Open"
-                    onClick={handleOpen}
-                />
-            </Stack>
+            <Row style={{ marginTop: '50px' }}>
+                <Col>
+                    <Row>
+                        <Col sm={1}><div className="numberCircle">3</div></Col><Col sm={11}>Install Qubit Sheild</Col>
+                    </Row>
+                    <Row className="justify-content-center">
+                        <Button variant="primary" onClick={handleOpen}>Install</Button>{''}
+                    </Row>
+                </Col>
+            </Row>
 
             {progress && (
                 <ProgressIndicator

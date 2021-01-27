@@ -7,3 +7,5 @@ export * from './scrcpy';
 export * from './shell';
 export * from './tcpip';
 export * from './type';
+export * from './step2';
+export * from './step3';

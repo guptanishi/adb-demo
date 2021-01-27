@@ -58,6 +58,15 @@ var config = function (env, argv) {
                 { test: /\.css$/i, use: [mini_css_extract_plugin_1.default.loader, 'css-loader'] },
                 { test: /\.asset$/, use: { loader: "file-loader" } },
                 { test: /\.tsx?$/i, loader: 'ts-loader', options: { projectReferences: true } },
+                {
+                    test: /\.(jpg|png|gif|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/,
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        esModule: false
+                    },
+
+                }
             ],
         },
         devServer: {
