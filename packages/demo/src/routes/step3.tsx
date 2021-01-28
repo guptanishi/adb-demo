@@ -20,7 +20,7 @@ export const Step3 = withDisplayName('Step3')(({
     return (
         <Container>
             <Row className="justify-content-center">
-                <b>Qubit Sheild installation  &amp; Configuration</b>
+                <div className="title">Qubit Sheild Installation  &amp; Configuration</div>
             </Row>
             <Row style={{ marginTop: '20px' }}>
                 <Col sm={1}>Step 3/5</Col>

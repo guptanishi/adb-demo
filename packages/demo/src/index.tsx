@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { CacheSwitch, CacheRoute, ErrorDialogProvider, HeaderTitle, LoggerContextProvider } from './components';
 import './index.css';
-import { Step2, Step3 } from './routes';
+import { Step1, Step2, Step3 } from './routes';
 
 interface RouteInfo {
     path: string;
@@ -31,6 +31,14 @@ function App(): JSX.Element | null {
     const routes = useMemo((): RouteInfo[] => [
         {
             path: '/',
+            exact: true,
+            name: 'Step1',
+            children: (
+                <Step1 />
+            )
+        },
+        {
+            path: '/step2',
             exact: true,
             name: 'Step2',
             children: (
@@ -61,7 +69,6 @@ function App(): JSX.Element | null {
                         {route.children}
                     </CacheRoute>
                 ))}
-
 
             </CacheSwitch>
         </LoggerContextProvider >

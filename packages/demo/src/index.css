@@ -7,7 +7,10 @@ html, body, #container {
 .ms-Dialog-subText {
     white-space: pre-wrap;
 }
-
+.title{
+color: navy;
+font-size: 24px;
+}
 .numberCircle {
     font: 32px Arial, sans-serif;
 
@@ -48,4 +51,10 @@ html, body, #container {
     line-height: 2em;
     box-sizing: content-box; 
 
+}
+.mt-top{
+    margin-top: 50px;
+}
+.mt-top20{
+    margin-top: 20px;
 }
