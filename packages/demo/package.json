@@ -42,6 +42,7 @@
     },
     "dependencies": {
         "@fluentui/react": "7.155.2",
+        "@types/file-saver": "^2.0.1",
         "@uifabric/file-type-icons": "7.6.23",
         "@uifabric/react-hooks": "7.13.9",
         "@yume-chan/adb": "^0.0.5",
@@ -52,6 +53,7 @@
         "bootstrap": "^4.6.0",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "file-saver": "^2.0.5",
         "jmuxer": "2.0.0",
         "mongoose": "^5.11.13",
         "path-browserify": "1.0.1",

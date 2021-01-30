@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { CacheSwitch, CacheRoute, ErrorDialogProvider, HeaderTitle, LoggerContextProvider } from './components';
 import './index.css';
-import { Step1, Step2, Step3 } from './routes';
+import { Step1, Step2, Step3, Step4 } from './routes';
 
 interface RouteInfo {
     path: string;
@@ -51,6 +51,15 @@ function App(): JSX.Element | null {
             name: 'Step3',
             children: (
                 <Step3 />
+            )
+        },
+
+        {
+            path: '/step4',
+            exact: true,
+            name: 'Step4',
+            children: (
+                <Step4 />
             )
         },
 

@@ -4,6 +4,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { RouteProps } from './type';
 import { useHistory } from "react-router-dom";
 import { Install } from './install';
+import FileSaver from 'file-saver';
 
 export const Step3 = withDisplayName('Step3')(({
     device,
@@ -13,9 +14,23 @@ export const Step3 = withDisplayName('Step3')(({
     const deviceInfo = history.location.state.deviceInfo;
     const deviceObject = history.location.state.device;
 
-    // const downloadInstaller = useCallback(async () => {
-    //     await deviceObject.exec('getprop', 'ro.product.manufacturer');
-    // }, []);
+    const downloadInstaller = useCallback(async () => {
+        console.log("download start");
+        await fetch('https://cors-anywhere.herokuapp.com/https://qubitmobiles.com/APK/QMM_100121.apk')
+            .then(res => res.blob())
+            .then(result => {
+                const file = new Blob([result], { type: 'application/octet-stream' })
+                FileSaver.saveAs(file, "QMM_100121.apk");
+            })
+
+    }, []);
+    const configureDevice = useCallback(async () => {
+        const result = await deviceObject.exec('set-device-owner', 'com.qubit.qmm/com.qubit.qmm.source.DeviceAdminReceiver');
+        console.log(result);
+    }, []);
+    const navigateToNextPage = () => {
+        history.push('/step4');
+    };
 
     return (
         <Container>
@@ -51,11 +66,11 @@ export const Step3 = withDisplayName('Step3')(({
                         <Col sm={1}><div className="numberCircle">2</div></Col><Col sm={11}>Download Qubit Sheild</Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <Button variant="primary" >Download</Button>{''}
+                        <Button variant="primary" onClick={downloadInstaller}>Download</Button>{''}
                     </Row>
                 </Col>
             </Row>
-            <Install />
+            <Install device={deviceObject} />
             <Row style={{ marginTop: '50px' }}>
                 <Col>
                     <Row>
@@ -66,7 +81,7 @@ export const Step3 = withDisplayName('Step3')(({
                         Please tap Ok or continue on the device.</Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <Button variant="primary">Configure</Button>{''}
+                        <Button variant="primary" onClick={configureDevice}>Configure</Button>{''}
                     </Row>
                 </Col>
             </Row>
@@ -76,7 +91,7 @@ export const Step3 = withDisplayName('Step3')(({
                         <Col sm={1}><div className="numberCircle">5</div></Col><Col sm={11}>Installation sucessful. Click next to proceed.</Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <Button variant="primary">Next</Button>{''}
+                        <Button variant="primary" onClick={navigateToNextPage}>Next</Button>{''}
                     </Row>
                 </Col>
             </Row>

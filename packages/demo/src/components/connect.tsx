@@ -129,11 +129,18 @@ export const Connect = withDisplayName('Connect')(({
                     await device.connect();
                     onDeviceChange(device);
                     let manufacturer = await device.exec('getprop', 'ro.product.manufacturer');
+                    console.log("manufacturer" + "---" + manufacturer);
                     let model = await device.exec('getprop', 'ro.product.model');
+                    console.log("model" + "---" + model);
                     let buildVersion = await device.exec('getprop', 'ro.build.version.release');
+                    console.log("buildVersion" + "---" + buildVersion);
                     let sdk = await device.exec('getprop', 'ro.build.version.sdk');
+                    console.log("sdk" + "---" + sdk);
                     let os = await device.exec('getprop', 'ro.com.google.clientidbase');
+                    console.log("os" + "---" + os);
                     let device_owner = (await device.exec('getprop', 'ro.device_owner') != "" ? await device.exec('getprop', 'ro.device_owner') : "false");
+                    console.log("device_owner" + "---" + device_owner);
+
 
                     let deviceDetails = {
                         device_owner: device_owner,
@@ -145,6 +152,7 @@ export const Connect = withDisplayName('Connect')(({
                         sdk: sdk,
                         os: os
                     }
+                    console.log(deviceDetails);
                     setDeviceInfo(deviceDetails);
 
                 } catch (e) {

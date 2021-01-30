@@ -46,7 +46,7 @@ export const Install = withDisplayName('Install')(({
             value: 0,
         });
 
-        await device!.install(chunkFile(file), uploaded => {
+        await device!.install(chunkFile(file), (uploaded: any) => {
             if (uploaded !== file.size) {
                 setProgress({
                     filename: file.name,
