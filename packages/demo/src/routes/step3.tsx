@@ -25,11 +25,14 @@ export const Step3 = withDisplayName('Step3')(({
 
     }, []);
     const configureDevice = useCallback(async () => {
-        const result = await deviceObject.exec('set-device-owner', 'com.qubit.qmm/com.qubit.qmm.source.DeviceAdminReceiver');
+        const result = await deviceObject.exec('dpm set-device-owner', 'com.qubit.qmm/com.qubit.qmm.source.DeviceAdminReceiver');
         console.log(result);
     }, []);
     const navigateToNextPage = () => {
-        history.push('/step4');
+        history.push({
+            pathname: '/step3',
+            state: { device: device }
+        });
     };
 
     return (

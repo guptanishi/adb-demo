@@ -5,12 +5,25 @@ import { useHistory } from "react-router-dom";
 import { RouteProps } from './type';
 
 export const Step4 = withDisplayName('Step4')(({
-    device
 }: RouteProps): JSX.Element | null => {
-    const enableDeviceSetting = useCallback(() => {
+    const history: any = useHistory();
 
+    const device = history.location.state.device;
+
+    const enableDeviceSetting = useCallback(async () => {
+        const deviceSetting = await device.exec('pm grant', 'com.qubit.qmm.android.permission.Write_SECURE_SETTINGS');
+        console.log(deviceSetting);
     }, [])
 
+    const drawOverOtherApps = useCallback(async () => {
+        const deviceSetting = await device.exec('pm grant', 'com.qubit.qmm.android.permission.Write_SECURE_SETTINGS');
+        console.log(deviceSetting);
+    }, [])
+
+    const usageAccess = useCallback(async () => {
+        const deviceSetting = await device.exec('pm grant', 'com.qubit.qmm.android.permission.Write_SECURE_SETTINGS');
+        console.log(deviceSetting);
+    }, [])
     const done = useCallback(() => {
 
     }, [])
@@ -40,7 +53,7 @@ export const Step4 = withDisplayName('Step4')(({
                     <div className="numberCircle">2</div>
                 </Col>
                 <Col sm={9}>Draw over other apps</Col>
-                <Col sm={2}><Button variant="primary" onClick={enableDeviceSetting}>Enable</Button>{''}</Col>
+                <Col sm={2}><Button variant="primary" onClick={drawOverOtherApps}>Enable</Button>{''}</Col>
             </Row>
 
             <Row style={{ marginTop: '50px' }}>
@@ -48,7 +61,7 @@ export const Step4 = withDisplayName('Step4')(({
                     <div className="numberCircle">3</div>
                 </Col>
                 <Col sm={9}>Usage Access</Col>
-                <Col sm={2}><Button variant="primary" onClick={enableDeviceSetting}>Enable</Button>{''}</Col>
+                <Col sm={2}><Button variant="primary" onClick={usageAccess}>Enable</Button>{''}</Col>
             </Row>
             <Row style={{ marginTop: '50px' }}>
                 <Col>
