@@ -216,7 +216,7 @@ export const Connect = withDisplayName('Connect')(({
                         {!device ? (
                             <Button variant="primary" onClick={connect} disabled={!selectedBackend}>Connect</Button>
                         ) : (
-                                <Button variant="primary" onClick={disconnect} >Disconnecting</Button>
+                                <Button variant="primary" onClick={disconnect} >Disconnect</Button>
                             )
                         }
                     </Row>

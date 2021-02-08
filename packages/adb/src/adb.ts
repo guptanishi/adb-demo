@@ -213,7 +213,13 @@ export class Adb {
         apk: ArrayLike<number> | ArrayBufferLike | AsyncIterable<ArrayBuffer>,
         onProgress?: (uploaded: number) => void,
     ) {
-        return await install(this, apk, onProgress);
+        const resolver = new PromiseResolver<void>();
+        try {
+
+            return await install(this, apk, onProgress);
+        } catch (e) {
+            resolver.reject(new Error('An error occured'));
+        }
     }
 
     public async sync(): Promise<AdbSync> {
