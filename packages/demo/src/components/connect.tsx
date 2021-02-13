@@ -138,7 +138,7 @@ export const Connect = withDisplayName('Connect')(({
                     console.log("sdk" + "---" + sdk);
                     let os = await device.exec('getprop', 'ro.com.google.clientidbase');
                     console.log("os" + "---" + os);
-                    let device_owner = (await device.exec('getprop', 'ro.device_owner') != "" ? await device.exec('getprop', 'ro.device_owner') : "false");
+                    let device_owner = await device.exec('getprop', 'ro.device_owner');
                     console.log("device_owner" + "---" + device_owner);
 
 

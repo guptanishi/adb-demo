@@ -155,6 +155,8 @@ export const Step3 = withDisplayName('Step3')(({
         let str = result.split(":");
         if (str != undefined && str[0] === "Success") {
             enableNextButton(true);
+        } else {
+            showErrorDialog(result);
         }
 
     }, []);
