@@ -141,20 +141,22 @@ export const Connect = withDisplayName('Connect')(({
                     let device_owner = await device.exec('getprop', 'ro.device_owner');
                     console.log("device_owner" + "---" + device_owner);
 
-
-                    let deviceDetails = {
-                        device_owner: device_owner,
-                        product: {
-                            manufacturer: manufacturer,
-                            model: model,
-                        },
-                        buildVersion: buildVersion,
-                        sdk: sdk,
-                        os: os
+                    if (JSON.parse(device_owner) === false) {
+                        let deviceDetails = {
+                            device_owner: device_owner,
+                            product: {
+                                manufacturer: manufacturer,
+                                model: model,
+                            },
+                            buildVersion: buildVersion,
+                            sdk: sdk,
+                            os: os
+                        }
+                        console.log(deviceDetails);
+                        setDeviceInfo(deviceDetails);
+                    } else {
+                        showErrorDialog("Qubit sheild is already configured. Please try with other device");
                     }
-                    console.log(deviceDetails);
-                    setDeviceInfo(deviceDetails);
-
                 } catch (e) {
                     device.dispose();
                     throw e;
@@ -245,7 +247,7 @@ export const Connect = withDisplayName('Connect')(({
                             Conection successful. Click Next to proceed.
                             </div>
                     </Row>
-                    <Row className="justify-content-center" ><Button variant="primary" disabled={!device?.connected} onClick={() => checkCompatibitlity(deviceInfo)}>Next{connecting}</Button>{''}</Row>
+                    <Row className="justify-content-center" ><Button variant="primary" disabled={!device?.connected} onClick={() => checkCompatibitlity(deviceInfo)}>Next</Button>{''}</Row>
                 </Col>
             </Row>
         </Container>

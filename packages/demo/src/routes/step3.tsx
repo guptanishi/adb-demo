@@ -3,7 +3,7 @@ import { withDisplayName, pickFile } from '../utils';
 import { Container, Row, Col, Button, ProgressBar } from 'react-bootstrap';
 import { ProgressIndicator } from "@fluentui/react";
 import { RouteProps } from './type';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { ErrorDialogContext } from './../components/error-dialog';
 import axios from 'axios';
 import { chunkFile } from "./file-manager";
@@ -161,14 +161,6 @@ export const Step3 = withDisplayName('Step3')(({
 
     }, []);
 
-    // next button click handler
-    const navigateToNextPage = () => {
-        history.push({
-            pathname: '/step4',
-            state: { device: deviceObject }
-        });
-    };
-
     // skip steps
     const skipDownloadStep = useCallback(() => {
         setDownloadInfo((info) => ({
@@ -233,8 +225,6 @@ export const Step3 = withDisplayName('Step3')(({
                     </Col></Row>
                 </Col>
             </Row>
-
-
             <Row style={{ marginTop: '50px' }}>
                 <Col>
                     <Row>
@@ -258,8 +248,6 @@ export const Step3 = withDisplayName('Step3')(({
                     </Col></Row>
                 </Col>
             </Row>
-
-
             <Row style={{ marginTop: '50px' }}>
                 <Col>
                     <Row>
@@ -280,11 +268,10 @@ export const Step3 = withDisplayName('Step3')(({
                         <Col sm={1}><div className="numberCircle">5</div></Col><Col sm={11}>Installation sucessful. Click next to proceed.</Col>
                     </Row>
                     <Row className="justify-content-center">
-                        <Button variant="primary" onClick={navigateToNextPage} disabled={!nextButton}>Next</Button>{''}
+                        <Link to="/www/finalPage.html" ><Button variant="primary" disabled={!nextButton}>Next</Button>{''}</Link>
                     </Row>
                 </Col>
             </Row>
-
         </Container>
     );
 });

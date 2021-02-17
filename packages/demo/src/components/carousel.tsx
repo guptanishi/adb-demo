@@ -96,9 +96,7 @@ const createItem = (position: any, idx: any) => {
 
 const CarouselSlideItem = (props: any) => {
     const { pos, idx } = props;
-    console.log(idx);
     const item = createItem(pos, idx)
-    console.log(item);
 
     return (
         <li className='carousel__slide-item' style={item.styles}>
