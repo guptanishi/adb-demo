@@ -3,10 +3,9 @@
     "private": true,
     "scripts": {
         "postinstall": "lerna bootstrap",
-        "build:abc": "lerna run --scope @yume-chan/adb-backend-webusb build",
         "build:watch": "lerna run --scope @yume-chan/adb-backend-webusb --stream build:watch",
         "build": "lerna run --scope demo --stream build",
-        "start:demo": "lerna run --scope demo --stream start",
+        "start": "lerna run --scope demo --stream start",
         "test": "lerna run --stream --no-bail coverage"
     },
     "devDependencies": {
