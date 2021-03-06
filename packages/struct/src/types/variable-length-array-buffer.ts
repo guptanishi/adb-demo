@@ -2,9 +2,11 @@ import { StructFieldValue, StructOptions, StructSerializationContext, StructValu
 import type { KeysOfType } from '../utils';
 import { ArrayBufferLikeFieldDefinition, ArrayBufferLikeFieldType, ArrayBufferLikeFieldValue } from './array-buffer';
 
+export type LengthField<TFields> = KeysOfType<TFields, number | string>;
+
 export interface VariableLengthArrayBufferLikeFieldOptions<
     TFields = object,
-    TLengthField extends KeysOfType<TFields, number | string> = any,
+    TLengthField extends LengthField<TFields> = any,
     > {
     lengthField: TLengthField;
 }
@@ -33,7 +35,7 @@ export class VariableLengthArrayBufferLikeFieldDefinition<
         options: Readonly<StructOptions>,
         context: StructSerializationContext,
         struct: StructValue,
-        value: TType['valueType'],
+        value: TType['TTypeScriptType'],
         arrayBuffer?: ArrayBuffer
     ): VariableLengthArrayBufferLikeStructFieldValue<this> {
         return new VariableLengthArrayBufferLikeStructFieldValue(
@@ -59,7 +61,7 @@ export class VariableLengthArrayBufferLikeStructFieldValue<
         options: Readonly<StructOptions>,
         context: StructSerializationContext,
         struct: StructValue,
-        value: TDefinition['valueType'],
+        value: TDefinition['TValue'],
         arrayBuffer?: ArrayBuffer,
     ) {
         super(definition, options, context, struct, value, arrayBuffer);

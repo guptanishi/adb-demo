@@ -23,14 +23,14 @@ export abstract class StructFieldValue<
     /** Gets the associated `Struct` instance */
     public readonly struct: StructValue;
 
-    protected value: TDefinition['valueType'];
+    protected value: TDefinition['TValue'];
 
     public constructor(
         definition: TDefinition,
         options: Readonly<StructOptions>,
         context: StructSerializationContext,
         struct: StructValue,
-        value: TDefinition['valueType'],
+        value: TDefinition['TValue'],
     ) {
         this.definition = definition;
         this.options = options;
@@ -40,7 +40,7 @@ export abstract class StructFieldValue<
     }
 
     /**
-     * Gets the actual size of this field. By default, the return value of its `definition.getSize()`
+     * Gets size of this field. By default, it returns its `definition`'s size.
      *
      * When overridden in derived classes, can have custom logic to calculate the actual size.
      */
@@ -51,14 +51,14 @@ export abstract class StructFieldValue<
     /**
      * When implemented in derived classes, returns the current value of this field
      */
-    public get(): TDefinition['valueType'] {
+    public get(): TDefinition['TValue'] {
         return this.value;
     }
 
     /**
      * When implemented in derived classes, update the current value of this field
      */
-    public set(value: TDefinition['valueType']): void {
+    public set(value: TDefinition['TValue']): void {
         this.value = value;
     }
 

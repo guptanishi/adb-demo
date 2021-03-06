@@ -159,7 +159,7 @@ const VideoPacket =
 
 export const NoPts = BigInt(-1);
 
-export type VideoPacket = typeof VideoPacket['deserializedType'];
+export type VideoPacket = typeof VideoPacket['TDeserializeResult'];
 
 const ClipboardMessage =
     new Struct()
@@ -240,7 +240,7 @@ export class ScrcpyClient {
         const streams = new EventQueue<AdbSocket>();
         const reverseRegistry = await device.reverse.add('localabstract:scrcpy', 27183, {
             onSocket(packet, stream) {
-                streams.push(stream);
+                streams.enqueue(stream);
             },
         });
 
@@ -286,8 +286,8 @@ export class ScrcpyClient {
             process.onClose(onClose);
         }
 
-        const videoStream = new AdbBufferedStream(await streams.next());
-        const controlStream = new AdbBufferedStream(await streams.next());
+        const videoStream = new AdbBufferedStream(await streams.dequeue());
+        const controlStream = new AdbBufferedStream(await streams.dequeue());
 
         // Don't await this!
         // `reverse.remove`'s response will never arrive
