@@ -73,6 +73,6 @@
         "yuv-canvas": "1.2.6"
     },
     "engines": {
-        "node": "14.x"
+        "node": "15.x"
     }
 }
