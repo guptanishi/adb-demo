@@ -35,7 +35,7 @@ var config = function (env, argv) {
         plugins.unshift(new clean_webpack_plugin_1.CleanWebpackPlugin());
     }
     return {
-        mode: 'development',
+        mode: 'production',
         devtool: argv.mode === 'production' ? 'source-map' : 'eval-source-map',
         context: context,
         target: 'web',
