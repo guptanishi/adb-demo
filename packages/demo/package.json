@@ -11,9 +11,10 @@
         "url": "git+https://github.com/yume-chan/ya-webadb.git"
     },
     "scripts": {
-        "start": "webpack serve",
+        "start": "webpack serve --legacy-peer-deps",
         "build": "webpack --mode production",
-        "build:dev": "webpack"
+        "build:dev": "webpack",
+        "heroku-postbuild": "npm run build"
     },
     "bugs": {
         "url": "https://github.com/yume-chan/ya-webadb/issues"
