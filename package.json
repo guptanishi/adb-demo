@@ -2,11 +2,12 @@
     "name": "root",
     "private": true,
     "scripts": {
-        "postinstall": "lerna bootstrap"
+        "postinstall": "lerna bootstrap",
+        "build:watch": "lerna run --scope @yume-chan/adb-backend-webusb --stream build:watch",
+        "build": "lerna run --scope demo --stream build",
+        "start": "lerna run --scope demo --stream start",
+        "test": "lerna run --stream --no-bail coverage"
     },
-    "workspaces": [
-        "packages/*"
-    ],
     "devDependencies": {
         "lerna": "3.22.1"
     },
