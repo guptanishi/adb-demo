@@ -151,10 +151,14 @@ export const Step3 = withDisplayName('Step3')(({
     // configuration
     const configureDevice = useCallback(async () => {
         const result = await deviceObject.exec('dpm set-device-owner', 'com.qubit.qmm/com.qubit.qmm.source.DeviceAdminReceiver');
-        console.log(result);
         let str = result.split(":");
         if (str != undefined && str[0] === "Success") {
-            enableNextButton(true);
+            if (deviceObject.api_level >= 28) {
+                await deviceObject.exec('settings put global private_dns_specifier', 'family-filter-dns.cleanbrowsing.org');
+                await deviceObject.exec('settings put global private_dns_mode hostname');
+                enableNextButton(true);
+            }
+
         } else {
             showErrorDialog(result);
         }

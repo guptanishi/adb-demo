@@ -34,7 +34,9 @@ export const Connect = withDisplayName('Connect')(({
             model: "",
         },
         buildVersion: "",
-        sdk: ""
+        sdk: "",
+        os: "",
+        api_level: ""
     });
     const history = useHistory();
     const checkCompatibitlity = (deviceInfo: any) => {
@@ -140,6 +142,8 @@ export const Connect = withDisplayName('Connect')(({
                     console.log("os" + "---" + os);
                     let device_owner = await device.exec('getprop', 'ro.device_owner');
                     console.log("device_owner" + "---" + device_owner);
+                    const api_level = await device.exec('getprop', 'ro.product.first_api_level');
+                    console.log(api_level);
 
                     if (JSON.parse(device_owner) === false) {
                         let deviceDetails = {
@@ -150,7 +154,8 @@ export const Connect = withDisplayName('Connect')(({
                             },
                             buildVersion: buildVersion,
                             sdk: sdk,
-                            os: os
+                            os: os,
+                            api_level: api_level
                         }
                         console.log(deviceDetails);
                         setDeviceInfo(deviceDetails);
